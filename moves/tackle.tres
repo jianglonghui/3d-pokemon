@@ -1,10 +1,8 @@
-[gd_resource type="Resource" script_class="MoveModel" load_steps=2 format=3]
+[gd_resource type="Resource" script_class="MoveModel" format=3 uid="uid://lofqi2d6tq8v"]
 
-[ext_resource type="Script" path="res://moves/move_model.gd" id="1_move"]
+[ext_resource type="Script" uid="uid://djwgbw8mpamqw" path="res://moves/move_model.gd" id="1_move"]
 
 [resource]
 script = ExtResource("1_move")
 name = "突袭"
 power = 40
-accuracy = 1.0
-type = 0

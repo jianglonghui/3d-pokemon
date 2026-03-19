@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cd4l54ujgikyw" path="res://pokemon/pokemon_model.gd" id="1_pokemon"]
 [ext_resource type="Resource" uid="uid://ce232whmg1cms" path="res://moves/burn.tres" id="2_burn"]
-[ext_resource type="Resource" path="res://moves/tackle.tres" id="3_tackle"]
+[ext_resource type="Resource" uid="uid://lofqi2d6tq8v" path="res://moves/tackle.tres" id="3_tackle"]
 
 [resource]
 script = ExtResource("1_pokemon")

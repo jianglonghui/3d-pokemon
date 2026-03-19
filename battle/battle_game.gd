@@ -8,6 +8,7 @@ class_name BattleGame
 signal enter_requested(slot: Node3D, origin: Vector3)
 signal attack_requested(atk_slot: Node3D, atk_origin: Vector3, def_slot: Node3D, move: MoveModel)
 signal faint_requested(slot: Node3D)
+signal switch_visual_requested(slot: Node3D, pokemon_name: String)
 signal victory_requested()
 
 # ── BattleDirector 完成后回发的确认信号 ──────────────────────────────────────
@@ -263,6 +264,7 @@ func game_() -> void:
 				enemy_trainer.active_pokemon = enemy_trainer.pokemon[idx]
 				enemy_slot.position = enemy_origin + Vector3(10, 0, 0)
 				refresh_panels()
+				switch_visual_requested.emit(enemy_slot, enemy_trainer.active_pokemon.name)
 				enter_requested.emit(enemy_slot, enemy_origin)
 				await enter_visual_done
 				await show_confirm("%s 派出了 %s！" % [enemy_trainer.name, enemy_trainer.active_pokemon.name])
@@ -289,6 +291,17 @@ func game_() -> void:
 			if player_trainer == null or player_trainer.is_dead():
 				await show_confirm("你的缚灵全部倒下了……")
 				break
+			# 换出下一只缚灵
+			var p_idx := player_trainer.pokemon.find(p_mon) + 1
+			if p_idx < player_trainer.pokemon.size():
+				player_trainer.active_pokemon = player_trainer.pokemon[p_idx]
+				player_slot.position = player_origin + Vector3(-10, 0, 0)
+				refresh_panels()
+				switch_visual_requested.emit(player_slot, player_trainer.active_pokemon.name)
+				enter_requested.emit(player_slot, player_origin)
+				await enter_visual_done
+				await show_confirm("%s，上！" % player_trainer.active_pokemon.name)
+			continue
 
 	# ── 胜利处理 ──────────────────────────────────────────────────────────
 	if player_won:

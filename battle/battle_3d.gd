@@ -159,6 +159,9 @@ func _ready() -> void:
 	director.enemy_anim.setup(enemy_slot_.get_node("PokemonMesh"))
 	director.enemy_anim.play_idle()
 
+	# 绑定视觉切换
+	game.switch_visual_requested.connect(_on_switch_visual)
+
 	# 绑定信号（BattleGame → BattleDirector）
 	director.bind_game(game)
 
@@ -170,6 +173,28 @@ func _ready() -> void:
 
 func _on_battle_ended(player_won: bool) -> void:
 	battle_done.emit(player_won)
+
+const _VISUAL_SCRIPTS := {
+	"铁皮兽": "res://pokemon/ironhide_visual.gd",
+	"刺背":   "res://pokemon/thornback_visual.gd",
+	"幻灵":   "res://pokemon/mystica_visual.gd",
+	"冕灵":   "res://pokemon/regalia_visual.gd",
+	"壮者":   "res://pokemon/brawler_visual.gd",
+}
+
+func _on_switch_visual(slot: Node3D, pokemon_name: String) -> void:
+	# 移除旧视觉
+	for child in slot.get_children():
+		if child.name.ends_with("Visual"):
+			child.queue_free()
+	# 生成新视觉
+	if not _VISUAL_SCRIPTS.has(pokemon_name):
+		return
+	var script: GDScript = load(_VISUAL_SCRIPTS[pokemon_name])
+	var visual: Node3D = script.new()
+	visual.name  = pokemon_name + "Visual"
+	visual.position = Vector3(0.0, -0.7, 0.0)
+	slot.add_child(visual)
 
 func _spawn_enemy_spirit() -> void:
 	var spirit_name := ""

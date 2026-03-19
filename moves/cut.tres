@@ -1,12 +1,9 @@
-[gd_resource type="Resource" script_class="MoveModel" load_steps=3 format=3]
+[gd_resource type="Resource" script_class="MoveModel" format=3 uid="uid://brij5ogypua6l"]
 
-[ext_resource type="Script" path="res://moves/move_model.gd" id="1_move"]
-[ext_resource type="AudioStream" path="res://moves/sounds/cut.wav" id="2_sfx"]
+[ext_resource type="Script" uid="uid://djwgbw8mpamqw" path="res://moves/move_model.gd" id="1_move"]
+[ext_resource type="AudioStream" uid="uid://c20axgkb5x3o2" path="res://moves/sounds/cut.wav" id="2_sfx"]
 
 [resource]
 script = ExtResource("1_move")
 name = "裂斩"
-power = 1
-accuracy = 1.0
-type = 0
 sfx = ExtResource("2_sfx")

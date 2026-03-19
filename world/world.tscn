@@ -3,14 +3,14 @@
 [ext_resource type="Script" uid="uid://bvp4av02iq8va" path="res://world/world.gd" id="1_world"]
 [ext_resource type="Script" uid="uid://balaoyi3rk50c" path="res://world/player.gd" id="2_player"]
 [ext_resource type="Script" uid="uid://cguxp0w6jb6pl" path="res://world/npc.gd" id="3_npc"]
-[ext_resource type="Resource" path="res://trainer/rude_man/rude_man.tres" id="4_rude"]
-[ext_resource type="Resource" path="res://trainer/red/red.tres" id="5_red"]
-[ext_resource type="Resource" path="res://trainer/dead_man/dead_man.tres" id="6_dead"]
+[ext_resource type="Resource" uid="uid://cl8ta0mnuuaj3" path="res://trainer/rude_man/rude_man.tres" id="4_rude"]
+[ext_resource type="Resource" uid="uid://chxsc6ar1qx7t" path="res://trainer/red/red.tres" id="5_red"]
+[ext_resource type="Resource" uid="uid://cvs5hq0rekiyt" path="res://trainer/dead_man/dead_man.tres" id="6_dead"]
 [ext_resource type="AudioStream" uid="uid://brq6qs664xdxx" path="res://music/mars.mp3" id="7_music"]
-[ext_resource type="PackedScene" path="res://assets/characters/Barbarian.glb" id="8_barbarian"]
-[ext_resource type="PackedScene" path="res://assets/characters/Knight.glb" id="9_knight"]
-[ext_resource type="PackedScene" path="res://assets/characters/Mage.glb" id="10_mage"]
-[ext_resource type="PackedScene" path="res://assets/characters/Rogue_Hooded.glb" id="11_rogue"]
+[ext_resource type="PackedScene" uid="uid://crqfw1i42b4jx" path="res://assets/characters/Barbarian.glb" id="8_barbarian"]
+[ext_resource type="PackedScene" uid="uid://d0ji6ilkccp32" path="res://assets/characters/Knight.glb" id="9_knight"]
+[ext_resource type="PackedScene" uid="uid://bgnvi0ipqrwgk" path="res://assets/characters/Mage.glb" id="10_mage"]
+[ext_resource type="PackedScene" uid="uid://lvayi5e360v2" path="res://assets/characters/Rogue_Hooded.glb" id="11_rogue"]
 
 [sub_resource type="Environment" id="Env_world"]
 background_mode = 1
@@ -19,56 +19,53 @@ ambient_light_source = 2
 ambient_light_color = Color(0.18, 0.12, 0.08, 1)
 ambient_light_energy = 0.0
 
-; ── Materials ─────────────────────────────────────────────────────────────────
+[sub_resource type="PlaneMesh" id="PlaneMesh_floor"]
+size = Vector2(14, 36)
+
 [sub_resource type="StandardMaterial3D" id="Mat_floor"]
 albedo_color = Color(0.45, 0.42, 0.38, 1)
 
-[sub_resource type="StandardMaterial3D" id="Mat_wall"]
-albedo_color = Color(0.55, 0.52, 0.48, 1)
-
-[sub_resource type="StandardMaterial3D" id="Mat_pew"]
-albedo_color = Color(0.45, 0.28, 0.12, 1)
-
-[sub_resource type="StandardMaterial3D" id="Mat_altar"]
-albedo_color = Color(0.85, 0.82, 0.65, 1)
-
-[sub_resource type="StandardMaterial3D" id="Mat_carpet"]
-albedo_color = Color(0.5, 0.1, 0.1, 1)
-
-; ── Meshes ────────────────────────────────────────────────────────────────────
-[sub_resource type="PlaneMesh" id="PlaneMesh_floor"]
-size = Vector2(14, 36)
+[sub_resource type="BoxShape3D" id="Shape_floor"]
+size = Vector3(14, 0.1, 36)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_ceiling"]
 size = Vector2(14, 36)
 
+[sub_resource type="StandardMaterial3D" id="Mat_wall"]
+albedo_color = Color(0.55, 0.52, 0.48, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_carpet"]
+size = Vector2(4, 34)
+
+[sub_resource type="StandardMaterial3D" id="Mat_carpet"]
+albedo_color = Color(0.5, 0.1, 0.1, 1)
+
 [sub_resource type="BoxMesh" id="BoxMesh_wall_long"]
+size = Vector3(14, 4, 0.5)
+
+[sub_resource type="BoxShape3D" id="Shape_wall_long"]
 size = Vector3(14, 4, 0.5)
 
 [sub_resource type="BoxMesh" id="BoxMesh_wall_side"]
 size = Vector3(0.5, 4, 36)
 
-[sub_resource type="BoxMesh" id="BoxMesh_pew"]
-size = Vector3(3.5, 0.6, 0.8)
-
-[sub_resource type="BoxMesh" id="BoxMesh_altar"]
-size = Vector3(8, 1.0, 2)
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_carpet"]
-size = Vector2(4, 34)
-
-; ── Shapes ────────────────────────────────────────────────────────────────────
-[sub_resource type="BoxShape3D" id="Shape_floor"]
-size = Vector3(14, 0.1, 36)
-
-[sub_resource type="BoxShape3D" id="Shape_wall_long"]
-size = Vector3(14, 4, 0.5)
-
 [sub_resource type="BoxShape3D" id="Shape_wall_side"]
 size = Vector3(0.5, 4, 36)
 
+[sub_resource type="BoxMesh" id="BoxMesh_altar"]
+size = Vector3(8, 1, 2)
+
+[sub_resource type="StandardMaterial3D" id="Mat_altar"]
+albedo_color = Color(0.85, 0.82, 0.65, 1)
+
 [sub_resource type="BoxShape3D" id="Shape_altar"]
-size = Vector3(8, 1.0, 2)
+size = Vector3(8, 1, 2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_pew"]
+size = Vector3(3.5, 0.6, 0.8)
+
+[sub_resource type="StandardMaterial3D" id="Mat_pew"]
+albedo_color = Color(0.45, 0.28, 0.12, 1)
 
 [sub_resource type="CapsuleShape3D" id="Shape_player"]
 radius = 0.35
@@ -77,7 +74,6 @@ height = 1.6
 [sub_resource type="SphereShape3D" id="Shape_detect"]
 radius = 2.2
 
-; ─────────────────────────────────────────────────────────────────────────────
 [node name="World" type="Node3D" unique_id=1917535130]
 script = ExtResource("1_world")
 
@@ -85,172 +81,170 @@ script = ExtResource("1_world")
 stream = ExtResource("7_music")
 volume_db = -6.0
 
-; ── Lighting ──────────────────────────────────────────────────────────────────
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1160019498]
 transform = Transform3D(0.866, -0.354, 0.354, 0, 0.707, 0.707, -0.5, -0.612, 0.612, 0, 10, 0)
 light_energy = 0.0
 shadow_enabled = true
 
-; 场景级填充灯已由 DungeonBuilder 的 zone_fill 动态灯替代，此处禁用
 [node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1457846818]
-transform = Transform3D(1,0,0,0,1,0,0,0,1, 0, 3, 0)
-light_color = Color(1.0, 0.65, 0.25, 1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+light_color = Color(1, 0.65, 0.25, 1)
 light_energy = 0.0
 omni_range = 20.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1153070343]
 environment = SubResource("Env_world")
 
-; ── Floor ─────────────────────────────────────────────────────────────────────
 [node name="Floor" type="StaticBody3D" parent="." unique_id=943006532]
+
 [node name="Mesh" type="MeshInstance3D" parent="Floor" unique_id=1341958164]
 mesh = SubResource("PlaneMesh_floor")
 surface_material_override/0 = SubResource("Mat_floor")
+
 [node name="Col" type="CollisionShape3D" parent="Floor" unique_id=1813284215]
-transform = Transform3D(1,0,0,0,1,0,0,0,1, 0,-0.05,0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
 shape = SubResource("Shape_floor")
 
-; ── Ceiling ────────────────────────────────────────────────────────────────────
 [node name="Ceiling" type="MeshInstance3D" parent="." unique_id=668897278]
-transform = Transform3D(1,0,0,0,-1,0,0,0,-1, 0,4,0)
+transform = Transform3D(1, 0, 0, 0, -1, 0, 0, 0, -1, 0, 4, 0)
 mesh = SubResource("PlaneMesh_ceiling")
 surface_material_override/0 = SubResource("Mat_wall")
 
-; ── Center carpet (aisle) ─────────────────────────────────────────────────────
 [node name="Carpet" type="MeshInstance3D" parent="." unique_id=2084379371]
-transform = Transform3D(1,0,0,0,1,0,0,0,1, 0,0.01,0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01, 0)
 mesh = SubResource("PlaneMesh_carpet")
 surface_material_override/0 = SubResource("Mat_carpet")
 
-; ── Walls ─────────────────────────────────────────────────────────────────────
 [node name="WallNorth" type="StaticBody3D" parent="." unique_id=574145686]
-transform = Transform3D(1,0,0,0,1,0,0,0,1, 0,2,-18)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -18)
+
 [node name="Mesh" type="MeshInstance3D" parent="WallNorth" unique_id=221751620]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.3588648, -8.897794, -31.67146)
 mesh = SubResource("BoxMesh_wall_long")
 surface_material_override/0 = SubResource("Mat_wall")
+
 [node name="Col" type="CollisionShape3D" parent="WallNorth" unique_id=451552825]
 shape = SubResource("Shape_wall_long")
 
 [node name="WallSouth" type="StaticBody3D" parent="." unique_id=856658744]
-transform = Transform3D(1,0,0,0,1,0,0,0,1, 0,2,18)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 18)
+
 [node name="Mesh" type="MeshInstance3D" parent="WallSouth" unique_id=1345200325]
 mesh = SubResource("BoxMesh_wall_long")
 surface_material_override/0 = SubResource("Mat_wall")
+
 [node name="Col" type="CollisionShape3D" parent="WallSouth" unique_id=1111470730]
 shape = SubResource("Shape_wall_long")
 
 [node name="WallWest" type="StaticBody3D" parent="." unique_id=344799900]
-transform = Transform3D(1,0,0,0,1,0,0,0,1, -7,2,0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 2, 0)
+
 [node name="Mesh" type="MeshInstance3D" parent="WallWest" unique_id=1305697874]
 mesh = SubResource("BoxMesh_wall_side")
 surface_material_override/0 = SubResource("Mat_wall")
+
 [node name="Col" type="CollisionShape3D" parent="WallWest" unique_id=1404039957]
 shape = SubResource("Shape_wall_side")
 
 [node name="WallEast" type="StaticBody3D" parent="." unique_id=929930077]
-transform = Transform3D(1,0,0,0,1,0,0,0,1, 7,2,0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 2, 0)
+
 [node name="Mesh" type="MeshInstance3D" parent="WallEast" unique_id=1587538945]
 mesh = SubResource("BoxMesh_wall_side")
 surface_material_override/0 = SubResource("Mat_wall")
+
 [node name="Col" type="CollisionShape3D" parent="WallEast" unique_id=114909072]
 shape = SubResource("Shape_wall_side")
 
-; ── Altar ─────────────────────────────────────────────────────────────────────
 [node name="Altar" type="StaticBody3D" parent="." unique_id=85523575]
-transform = Transform3D(1,0,0,0,1,0,0,0,1, 0,0.5,-14)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -14)
+
 [node name="Mesh" type="MeshInstance3D" parent="Altar" unique_id=29664132]
 mesh = SubResource("BoxMesh_altar")
 surface_material_override/0 = SubResource("Mat_altar")
+
 [node name="Col" type="CollisionShape3D" parent="Altar" unique_id=723194905]
 shape = SubResource("Shape_altar")
 
-; ── Pews (visual only) ────────────────────────────────────────────────────────
 [node name="PewL1" type="MeshInstance3D" parent="." unique_id=865398604]
-transform = Transform3D(1,0,0,0,1,0,0,0,1, -3.8,0.3,-5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.8, 0.3, -5)
 mesh = SubResource("BoxMesh_pew")
 surface_material_override/0 = SubResource("Mat_pew")
 
 [node name="PewL2" type="MeshInstance3D" parent="." unique_id=825638654]
-transform = Transform3D(1,0,0,0,1,0,0,0,1, -3.8,0.3,-2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.8, 0.3, -2)
 mesh = SubResource("BoxMesh_pew")
 surface_material_override/0 = SubResource("Mat_pew")
 
 [node name="PewL3" type="MeshInstance3D" parent="." unique_id=1612873658]
-transform = Transform3D(1,0,0,0,1,0,0,0,1, -3.8,0.3,1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.8, 0.3, 1)
 mesh = SubResource("BoxMesh_pew")
 surface_material_override/0 = SubResource("Mat_pew")
 
 [node name="PewR1" type="MeshInstance3D" parent="." unique_id=1919287962]
-transform = Transform3D(1,0,0,0,1,0,0,0,1, 3.8,0.3,-5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8, 0.3, -5)
 mesh = SubResource("BoxMesh_pew")
 surface_material_override/0 = SubResource("Mat_pew")
 
 [node name="PewR2" type="MeshInstance3D" parent="." unique_id=162971804]
-transform = Transform3D(1,0,0,0,1,0,0,0,1, 3.8,0.3,-2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8, 0.3, -2)
 mesh = SubResource("BoxMesh_pew")
 surface_material_override/0 = SubResource("Mat_pew")
 
 [node name="PewR3" type="MeshInstance3D" parent="." unique_id=709948575]
-transform = Transform3D(1,0,0,0,1,0,0,0,1, 3.8,0.3,1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8, 0.3, 1)
 mesh = SubResource("BoxMesh_pew")
 surface_material_override/0 = SubResource("Mat_pew")
 
-; ── Player ────────────────────────────────────────────────────────────────────
 [node name="Player" type="CharacterBody3D" parent="." unique_id=25604730]
-transform = Transform3D(1,0,0,0,1,0,0,0,1, 0,0.8,15)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 15)
 script = ExtResource("2_player")
 
-; Character model: Barbarian, offset y=-0.8 so feet touch floor
-[node name="CharModel" parent="Player" instance=ExtResource("8_barbarian")]
-transform = Transform3D(1,0,0,0,1,0,0,0,1, 0,-0.8,0)
+[node name="CharModel" parent="Player" unique_id=792720881 instance=ExtResource("8_barbarian")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player" unique_id=2001836265]
 shape = SubResource("Shape_player")
 
 [node name="RayCast3D" type="RayCast3D" parent="Player" unique_id=817051588]
 target_position = Vector3(0, 0, 2)
-enabled = true
 
-; ── NPC: RudeMan → Knight ──────────────────────────────────────────────────────
 [node name="RudeMan" type="Node3D" parent="." unique_id=361894037]
-transform = Transform3D(1,0,0,0,1,0,0,0,1, 0,0,9)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 9)
 script = ExtResource("3_npc")
 trainer = ExtResource("4_rude")
 
-[node name="CharModel" parent="RudeMan" instance=ExtResource("9_knight")]
-transform = Transform3D(1,0,0,0,1,0,0,0,1, 0,0,0)
+[node name="CharModel" parent="RudeMan" unique_id=191567208 instance=ExtResource("9_knight")]
 
 [node name="DetectionArea" type="Area3D" parent="RudeMan" unique_id=380657013]
+
 [node name="Col" type="CollisionShape3D" parent="RudeMan/DetectionArea" unique_id=1859124776]
 shape = SubResource("Shape_detect")
 
-; ── NPC: Red → Mage ────────────────────────────────────────────────────────────
 [node name="Red" type="Node3D" parent="." unique_id=697233047]
-transform = Transform3D(1,0,0,0,1,0,0,0,1, -3,0,0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 0)
 script = ExtResource("3_npc")
 trainer = ExtResource("5_red")
 
-[node name="CharModel" parent="Red" instance=ExtResource("10_mage")]
-transform = Transform3D(1,0,0,0,1,0,0,0,1, 0,0,0)
+[node name="CharModel" parent="Red" unique_id=1730154171 instance=ExtResource("10_mage")]
 
 [node name="DetectionArea" type="Area3D" parent="Red" unique_id=455832203]
+
 [node name="Col" type="CollisionShape3D" parent="Red/DetectionArea" unique_id=674266019]
 shape = SubResource("Shape_detect")
 
-; ── NPC: DeadMan → Rogue Hooded ───────────────────────────────────────────────
 [node name="DeadMan" type="Node3D" parent="." unique_id=172368900]
-transform = Transform3D(1,0,0,0,1,0,0,0,1, 0,0,-10)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
 script = ExtResource("3_npc")
 trainer = ExtResource("6_dead")
 
-[node name="CharModel" parent="DeadMan" instance=ExtResource("11_rogue")]
-transform = Transform3D(1,0,0,0,1,0,0,0,1, 0,0,0)
+[node name="CharModel" parent="DeadMan" unique_id=1143414038 instance=ExtResource("11_rogue")]
 
 [node name="DetectionArea" type="Area3D" parent="DeadMan" unique_id=1966434147]
+
 [node name="Col" type="CollisionShape3D" parent="DeadMan/DetectionArea" unique_id=902509099]
 shape = SubResource("Shape_detect")
 
-; ── Battle layer (legacy) ─────────────────────────────────────────────────────
 [node name="BattleLayer" type="CanvasLayer" parent="." unique_id=1810507836]
 layer = 10
 visible = false
