@@ -1,0 +1,233 @@
+[gd_scene format=3 uid="uid://battlescene3d"]
+
+[ext_resource type="Script" path="res://battle/battle_3d.gd" id="1_battle3d"]
+[ext_resource type="PackedScene" path="res://assets/characters/Barbarian.glb" id="char_player"]
+[ext_resource type="PackedScene" path="res://assets/characters/Knight.glb" id="char_enemy"]
+[ext_resource type="AudioStream" path="res://pokemon/sounds/enter.wav" id="2_sfx_enter"]
+[ext_resource type="AudioStream" path="res://pokemon/sounds/faint.wav" id="3_sfx_faint"]
+[ext_resource type="AudioStream" path="res://moves/hit.wav" id="4_sfx_hit"]
+[ext_resource type="AudioStream" path="res://trainer/sounds/battle_begin.wav" id="5_sfx_begin"]
+[ext_resource type="AudioStream" path="res://widgets/sounds/activate.wav" id="6_sfx_confirm"]
+
+[sub_resource type="Environment" id="Env_battle"]
+background_mode = 1
+background_color = Color(0.08, 0.10, 0.16, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.5, 0.55, 0.7, 1)
+ambient_light_energy = 0.5
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_arena"]
+size = Vector2(16, 16)
+
+[sub_resource type="StandardMaterial3D" id="Mat_arena"]
+albedo_color = Color(0.18, 0.22, 0.32, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_arena"]
+size = Vector3(16, 0.1, 16)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_player"]
+radius = 0.45
+height = 1.9
+
+[sub_resource type="StandardMaterial3D" id="Mat_player"]
+albedo_color = Color(0.2, 0.5, 0.95, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_enemy"]
+radius = 0.45
+height = 1.9
+
+[sub_resource type="StandardMaterial3D" id="Mat_enemy"]
+albedo_color = Color(0.9, 0.2, 0.2, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_shadow"]
+top_radius = 0.0
+bottom_radius = 0.55
+height = 0.02
+
+[sub_resource type="StandardMaterial3D" id="Mat_shadow"]
+albedo_color = Color(0, 0, 0, 0.35)
+transparency = 1
+
+; ── Root ─────────────────────────────────────────────────────────────────────
+[node name="BattleScene" type="Node3D"]
+script = ExtResource("1_battle3d")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Env_battle")
+
+; Camera sits above-center, looking down at ~30° so both pokemon are clearly visible
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.866, -0.5, 0, 0.5, 0.866, 0, 6, 10)
+fov = 60.0
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.707, -0.5, 0.5, 0, 0.707, 0.707, -0.707, -0.5, 0.5, 0, 8, 4)
+light_energy = 1.4
+shadow_enabled = true
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 2)
+light_color = Color(0.6, 0.7, 1.0, 1)
+light_energy = 0.8
+omni_range = 14.0
+
+; ── Arena ─────────────────────────────────────────────────────────────────────
+[node name="Arena" type="StaticBody3D" parent="."]
+
+[node name="Mesh" type="MeshInstance3D" parent="Arena"]
+mesh = SubResource("PlaneMesh_arena")
+surface_material_override/0 = SubResource("Mat_arena")
+
+[node name="Collision" type="CollisionShape3D" parent="Arena"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
+shape = SubResource("BoxShape3D_arena")
+
+; ── Player pokemon — left side ─────────────────────────────────────────────────
+[node name="PlayerSlot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 0, 1.0)
+
+[node name="PokemonMesh" parent="PlayerSlot" instance=ExtResource("char_player")]
+
+[node name="Shadow" type="MeshInstance3D" parent="PlayerSlot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02, 0)
+mesh = SubResource("CylinderMesh_shadow")
+surface_material_override/0 = SubResource("Mat_shadow")
+
+; ── Enemy pokemon — right side ──────────────────────────────────────────────────
+[node name="EnemySlot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, -1.0)
+
+[node name="PokemonMesh" parent="EnemySlot" instance=ExtResource("char_enemy")]
+
+[node name="Shadow" type="MeshInstance3D" parent="EnemySlot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02, 0)
+mesh = SubResource("CylinderMesh_shadow")
+surface_material_override/0 = SubResource("Mat_shadow")
+
+; ── SFX ───────────────────────────────────────────────────────────────────────
+[node name="SfxEnter" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_sfx_enter")
+volume_db = -4.0
+
+[node name="SfxFaint" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_sfx_faint")
+volume_db = -4.0
+
+[node name="SfxHit" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_sfx_hit")
+volume_db = -2.0
+
+[node name="SfxBegin" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_sfx_begin")
+volume_db = -2.0
+
+[node name="SfxConfirm" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_sfx_confirm")
+volume_db = -6.0
+
+; ── UI overlay (CanvasLayer) ───────────────────────────────────────────────────
+[node name="UI" type="CanvasLayer" parent="."]
+layer = 10
+
+[node name="EnemyPanel" type="VBoxContainer" parent="UI"]
+offset_left = 860.0
+offset_top = 20.0
+offset_right = 1250.0
+offset_bottom = 120.0
+
+[node name="NameLabel" type="Label" parent="UI/EnemyPanel"]
+text = "???"
+theme_override_font_sizes/font_size = 22
+
+[node name="HPRow" type="HBoxContainer" parent="UI/EnemyPanel"]
+
+[node name="HPLabel" type="Label" parent="UI/EnemyPanel/HPRow"]
+text = "HP"
+theme_override_font_sizes/font_size = 16
+custom_minimum_size = Vector2(30, 0)
+
+[node name="HPBar" type="ProgressBar" parent="UI/EnemyPanel/HPRow"]
+custom_minimum_size = Vector2(300, 20)
+size_flags_horizontal = 3
+value = 100.0
+show_percentage = false
+
+[node name="HPNumLabel" type="Label" parent="UI/EnemyPanel"]
+text = "-- / --"
+theme_override_font_sizes/font_size = 15
+
+[node name="PlayerPanel" type="VBoxContainer" parent="UI"]
+offset_left = 30.0
+offset_top = 380.0
+offset_right = 420.0
+offset_bottom = 490.0
+
+[node name="NameLabel" type="Label" parent="UI/PlayerPanel"]
+text = "???"
+theme_override_font_sizes/font_size = 22
+
+[node name="HPRow" type="HBoxContainer" parent="UI/PlayerPanel"]
+
+[node name="HPLabel" type="Label" parent="UI/PlayerPanel/HPRow"]
+text = "HP"
+theme_override_font_sizes/font_size = 16
+custom_minimum_size = Vector2(30, 0)
+
+[node name="HPBar" type="ProgressBar" parent="UI/PlayerPanel/HPRow"]
+custom_minimum_size = Vector2(300, 20)
+size_flags_horizontal = 3
+value = 100.0
+show_percentage = false
+
+[node name="HPNumLabel" type="Label" parent="UI/PlayerPanel"]
+text = "-- / --"
+theme_override_font_sizes/font_size = 15
+
+[node name="BottomBar" type="Panel" parent="UI"]
+offset_left = 0.0
+offset_top = 530.0
+offset_right = 1280.0
+offset_bottom = 720.0
+
+[node name="InfoBox" type="RichTextLabel" parent="UI/BottomBar"]
+offset_left = 16.0
+offset_top = 8.0
+offset_right = 840.0
+offset_bottom = 182.0
+bbcode_enabled = true
+text = ""
+theme_override_font_sizes/normal_font_size = 20
+
+[node name="ConfirmButton" type="Button" parent="UI/BottomBar"]
+offset_left = 860.0
+offset_top = 100.0
+offset_right = 1060.0
+offset_bottom = 170.0
+text = "确认 [Enter]"
+visible = false
+
+[node name="ActionMenu" type="VBoxContainer" parent="UI/BottomBar"]
+offset_left = 860.0
+offset_top = 10.0
+offset_right = 1260.0
+offset_bottom = 182.0
+visible = false
+
+[node name="Fight" type="Button" parent="UI/BottomBar/ActionMenu"]
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "出击"
+theme_override_font_sizes/font_size = 22
+
+[node name="Run" type="Button" parent="UI/BottomBar/ActionMenu"]
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "撤退"
+theme_override_font_sizes/font_size = 22
+
+[node name="MoveMenu" type="VBoxContainer" parent="UI/BottomBar"]
+offset_left = 860.0
+offset_top = 10.0
+offset_right = 1260.0
+offset_bottom = 182.0
+visible = false

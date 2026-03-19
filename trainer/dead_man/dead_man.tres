@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="TrainerModel" format=3 uid="uid://cvs5hq0rekiyt"]
+
+[ext_resource type="Script" uid="uid://44fnwkxrn6es" path="res://trainer/trainer_model.gd" id="1_trainer"]
+[ext_resource type="Resource" uid="uid://c72yq2sfsfxay" path="res://pokemon/crown.tres" id="2_crown"]
+[ext_resource type="Resource" uid="uid://d0uijou3qu5rw" path="res://pokemon/beer.tres" id="3_beer"]
+[ext_resource type="Resource" uid="uid://xl8k4mw623sv" path="res://trainer/dead_man/encounter.tres" id="4_encounter"]
+[ext_resource type="Resource" uid="uid://cmxdeac2yf8ll" path="res://trainer/dead_man/battle_begin.tres" id="5_begin"]
+[ext_resource type="Resource" uid="uid://b8p76o583vlir" path="res://trainer/dead_man/battle_loose.tres" id="6_loose"]
+[ext_resource type="PackedScene" uid="uid://lvayi5e360v2" path="res://assets/characters/Rogue_Hooded.glb" id="7_graphic"]
+
+[resource]
+script = ExtResource("1_trainer")
+id = "dead_man"
+name = "Vex"
+pokemon = Array[Resource]([ExtResource("2_crown"), ExtResource("3_beer")])
+world_encounter = ExtResource("4_encounter")
+battle_begin = ExtResource("5_begin")
+battle_loose = ExtResource("6_loose")
+battle_graphic = ExtResource("7_graphic")

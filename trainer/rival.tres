@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="TrainerModel" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://trainer/trainer_model.gd" id="1_trainer"]
+[ext_resource type="Resource" path="res://pokemon/charmander.tres" id="2_charmander"]
+
+[resource]
+script = ExtResource("1_trainer")
+id = "rival"
+name = "Rival"
+pokemon = Array[Resource]([ExtResource("2_charmander")])
+items = Array[Resource]([])
+is_player = false

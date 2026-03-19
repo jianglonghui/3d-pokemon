@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="MoveModel" format=3 uid="uid://c4s8xbwo4g8ro"]
+
+[ext_resource type="Script" uid="uid://djwgbw8mpamqw" path="res://moves/move_model.gd" id="1_move"]
+
+[resource]
+script = ExtResource("1_move")
+name = "重压"
+power = 30

@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="TrainerModel" format=3 uid="uid://chxsc6ar1qx7t"]
+
+[ext_resource type="Script" uid="uid://44fnwkxrn6es" path="res://trainer/trainer_model.gd" id="1_trainer"]
+[ext_resource type="Resource" uid="uid://dr0wj5ko2rvw7" path="res://pokemon/wizard_hat.tres" id="2_wizard"]
+[ext_resource type="Resource" uid="uid://caw8dgga5dyv3" path="res://trainer/red/encounter.tres" id="3_encounter"]
+[ext_resource type="Resource" uid="uid://gawcy0cu5dc2" path="res://trainer/red/battle_begin.tres" id="4_begin"]
+[ext_resource type="Resource" uid="uid://b3r08lgh3bjga" path="res://trainer/red/battle_loose.tres" id="5_loose"]
+[ext_resource type="PackedScene" uid="uid://bgnvi0ipqrwgk" path="res://assets/characters/Mage.glb" id="6_graphic"]
+
+[resource]
+script = ExtResource("1_trainer")
+id = "red"
+name = "阿卡娜"
+pokemon = Array[Resource]([ExtResource("2_wizard")])
+world_encounter = ExtResource("3_encounter")
+battle_begin = ExtResource("4_begin")
+battle_loose = ExtResource("5_loose")
+battle_graphic = ExtResource("6_graphic")

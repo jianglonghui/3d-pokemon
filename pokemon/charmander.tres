@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="PokemonModel" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://pokemon/pokemon_model.gd" id="1_pokemon"]
+[ext_resource type="Resource" path="res://moves/ember.tres" id="2_ember"]
+
+[resource]
+script = ExtResource("1_pokemon")
+name = "Charmander"
+hp = 39
+max_hp = 39
+xp = 51
+exp_stat = 5
+attack = 52
+defense = 43
+speed = 65
+wild = false
+moves = Array[Resource]([ExtResource("2_ember")])
+moves_to_learn = {}

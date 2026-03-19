@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="MoveModel" format=3 uid="uid://c4v3dcg4s0uxe"]
+
+[ext_resource type="Script" uid="uid://djwgbw8mpamqw" path="res://moves/move_model.gd" id="1_move"]
+[ext_resource type="AudioStream" uid="uid://c20axgkb5x3o2" path="res://moves/sounds/cut.wav" id="2_sfx"]
+
+[resource]
+script = ExtResource("1_move")
+name = "角击"
+power = 35
+sfx = ExtResource("2_sfx")

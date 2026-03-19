@@ -1,0 +1,70 @@
+[gd_resource type="Theme" load_steps=4 format=3]
+
+[ext_resource type="FontFile" path="res://widgets/Pokemon Classic.ttf" id="1_font"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
+bg_color = Color(0.113725, 0.368627, 0.482353, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.8, 0.85, 0.9, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+content_margin_left = 12.0
+content_margin_top = 8.0
+content_margin_right = 12.0
+content_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_button_normal"]
+bg_color = Color(0.08, 0.28, 0.38, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.6, 0.75, 0.85, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+content_margin_left = 10.0
+content_margin_top = 6.0
+content_margin_right = 10.0
+content_margin_bottom = 6.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_button_focus"]
+bg_color = Color(0.2, 0.5, 0.65, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 0.6, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+content_margin_left = 10.0
+content_margin_top = 6.0
+content_margin_right = 10.0
+content_margin_bottom = 6.0
+
+[resource]
+; Buttons only get the pixel font — RichTextLabel uses Godot built-in Noto (CJK-capable)
+; set via add_theme_font_override in dialog_overlay.gd _ready()
+Button/fonts/font = ExtResource("1_font")
+default_font_size = 20
+
+Panel/styles/panel = SubResource("StyleBoxFlat_panel")
+
+Button/colors/font_color = Color(0.92, 0.95, 1.0, 1)
+Button/colors/font_hover_color = Color(1.0, 1.0, 0.5, 1)
+Button/colors/font_focus_color = Color(1.0, 1.0, 0.5, 1)
+Button/colors/font_pressed_color = Color(0.7, 0.9, 1.0, 1)
+Button/styles/normal = SubResource("StyleBoxFlat_button_normal")
+Button/styles/hover = SubResource("StyleBoxFlat_button_focus")
+Button/styles/focus = SubResource("StyleBoxFlat_button_focus")
+Button/styles/pressed = SubResource("StyleBoxFlat_button_normal")
+
+ProgressBar/colors/font_color = Color(0, 0, 0, 0)

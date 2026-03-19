@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="TrainerModel" format=3 uid="uid://cl8ta0mnuuaj3"]
+
+[ext_resource type="Script" uid="uid://44fnwkxrn6es" path="res://trainer/trainer_model.gd" id="1_trainer"]
+[ext_resource type="Resource" uid="uid://dcr2ip6u5unwd" path="res://pokemon/spikey.tres" id="2_spikey"]
+[ext_resource type="Resource" uid="uid://bk7grwtaqk3c0" path="res://trainer/rude_man/encounter.tres" id="3_encounter"]
+[ext_resource type="Resource" uid="uid://d2v8vrg4uwfwj" path="res://trainer/rude_man/battle_begin.tres" id="4_begin"]
+[ext_resource type="Resource" uid="uid://cu7komh1uw1bx" path="res://trainer/rude_man/battle_loose.tres" id="5_loose"]
+[ext_resource type="PackedScene" uid="uid://d0ji6ilkccp32" path="res://assets/characters/Knight.glb" id="6_graphic"]
+
+[resource]
+script = ExtResource("1_trainer")
+id = "rude_man"
+name = "加雷斯"
+pokemon = Array[Resource]([ExtResource("2_spikey")])
+world_encounter = ExtResource("3_encounter")
+battle_begin = ExtResource("4_begin")
+battle_loose = ExtResource("5_loose")
+battle_graphic = ExtResource("6_graphic")

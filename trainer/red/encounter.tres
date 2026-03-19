@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="TextModel" format=3 uid="uid://caw8dgga5dyv3"]
+
+[ext_resource type="Script" uid="uid://cxegpcyoarp0" path="res://trainer/text_model.gd" id="1_text"]
+
+[resource]
+script = ExtResource("1_text")
+text = "Oh! A visitor! It has been ages since anyone came this deep..."

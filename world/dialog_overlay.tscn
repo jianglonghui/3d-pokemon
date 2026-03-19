@@ -1,0 +1,81 @@
+[gd_scene format=3 uid="uid://dialogoverlay"]
+
+[ext_resource type="Script" path="res://world/dialog_overlay.gd" id="1_dialog"]
+[ext_resource type="AudioStream" path="res://widgets/sounds/activate.wav" id="2_sfx"]
+[ext_resource type="Theme" path="res://widgets/theme.tres" id="3_theme"]
+
+[node name="DialogOverlay" type="CanvasLayer"]
+layer = 20
+script = ExtResource("1_dialog")
+
+; Panel anchored to the bottom of the screen, full width, ~172px tall
+[node name="Panel" type="Panel" parent="."]
+theme = ExtResource("3_theme")
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 0.0
+offset_top = -172.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 0
+
+; Label: fills left portion of panel, leaves 200px on right for buttons
+[node name="Label" type="RichTextLabel" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 10.0
+offset_right = -200.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = ""
+scroll_active = false
+
+; OKButton: top-right corner of panel
+[node name="OKButton" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -188.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -5.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "Fight [Enter]"
+visible = false
+
+; LeaveButton: bottom-right corner of panel
+[node name="LeaveButton" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -188.0
+offset_top = 5.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "Leave [Esc]"
+visible = false
+
+[node name="SFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_sfx")
+volume_db = -8.0

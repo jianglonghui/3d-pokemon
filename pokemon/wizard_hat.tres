@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="PokemonModel" format=3 uid="uid://dr0wj5ko2rvw7"]
+
+[ext_resource type="Script" uid="uid://cd4l54ujgikyw" path="res://pokemon/pokemon_model.gd" id="1_pokemon"]
+[ext_resource type="Resource" uid="uid://drl81k77sgr70" path="res://moves/thunderbolt.tres" id="2_thunderbolt"]
+[ext_resource type="Resource" path="res://moves/tackle.tres" id="3_tackle"]
+
+[resource]
+script = ExtResource("1_pokemon")
+name = "幻灵"
+hp = 5
+max_hp = 5
+xp = 6
+exp_stat = 6
+moves = Array[Resource]([ExtResource("2_thunderbolt"), ExtResource("3_tackle")])

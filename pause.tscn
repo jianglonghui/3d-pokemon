@@ -1,0 +1,35 @@
+[gd_scene load_steps=2 format=3 uid="uid://pause3d"]
+
+[ext_resource type="Script" path="res://pause.gd" id="1_pause"]
+
+[node name="Pause" type="CanvasLayer"]
+layer = 99
+script = ExtResource("1_pause")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+offset_left = 440.0
+offset_top = 200.0
+offset_right = 840.0
+offset_bottom = 520.0
+visible = false
+
+[node name="VBox" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+offset_left = 40.0
+offset_top = 40.0
+offset_right = 360.0
+offset_bottom = 300.0
+
+[node name="Title" type="Label" parent="Panel/VBox"]
+text = "— PAUSED —"
+theme_override_font_sizes/font_size = 26
+horizontal_alignment = 1
+
+[node name="Resume" type="Button" parent="Panel/VBox"]
+text = "Resume"
+theme_override_font_sizes/font_size = 22
+
+[node name="Quit" type="Button" parent="Panel/VBox"]
+text = "Quit"
+theme_override_font_sizes/font_size = 22

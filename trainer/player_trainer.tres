@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="TrainerModel" format=3 uid="uid://7qileto11h5l"]
+
+[ext_resource type="Script" uid="uid://44fnwkxrn6es" path="res://trainer/trainer_model.gd" id="1_trainer"]
+[ext_resource type="Resource" uid="uid://dy17mpir3gfix" path="res://pokemon/horns.tres" id="2_horns"]
+[ext_resource type="Resource" uid="uid://dcr2ip6u5unwd" path="res://pokemon/spikey.tres" id="3_spikey"]
+
+[resource]
+script = ExtResource("1_trainer")
+id = "blue"
+name = "Adventurer"
+pokemon = Array[Resource]([ExtResource("2_horns"), ExtResource("3_spikey")])
+is_player = true

@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="FloorLayout" load_steps=2 format=3]
+
+[ext_resource type="Script" uid="uid://k8vc7inihemk" path="res://data/floors/floor_layout.gd" id="1_script"]
+
+[resource]
+script = ExtResource("1_script")
+floor_number = 1
+floor_name = "深渊第一层"
+room_width_tiles = 7
+room_depth_tiles = 18
+tile_size = 2.0
+zone01_limit = 6.0
+zone02_limit = -6.0
+zone01_color = Color(1, 0.549, 0.149, 1)
+zone01_energy = 1.5
+zone02_color = Color(1, 0.816, 0.502, 1)
+zone02_energy = 1.2
+zone03_color = Color(1, 0.376, 0.063, 1)
+zone03_energy = 2.0

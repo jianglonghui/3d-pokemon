@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="TextModel" format=3 uid="uid://cmxdeac2yf8ll"]
+
+[ext_resource type="Script" uid="uid://cxegpcyoarp0" path="res://trainer/text_model.gd" id="1_text"]
+
+[resource]
+script = ExtResource("1_text")
+text = "The relic belongs to those strong enough to claim it.
+Show me your strength!
+Or they will carve on your tomb:
+HERE LIES THE FOOL WHO CHALLENGED THE SHADOW OF THE DEEP!"

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="MoveModel" format=3 uid="uid://ce232whmg1cms"]
+
+[ext_resource type="Script" uid="uid://djwgbw8mpamqw" path="res://moves/move_model.gd" id="1_move"]
+[ext_resource type="AudioStream" uid="uid://jofbdx0wej87" path="res://moves/sounds/burn.wav" id="2_sfx"]
+
+[resource]
+script = ExtResource("1_move")
+name = "灼烧"
+power = 40
+type = 1
+sfx = ExtResource("2_sfx")
